@@ -1,0 +1,42 @@
+{
+    "name": "Leave Management System",
+    "short_name": "LMS",
+    "start_url": "http://127.0.0.1:5500/index.html/",
+    "display": "standalone",
+    "background_color":"#FFE9D2",
+    "theme_color": "#f6c226",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+          "src": "/img/icons/72x72.png",
+          "type": "image/png",
+          "sizes": "72x72"
+        },
+        {
+          "src": "/img/icons/96x96.png",
+          "type": "image/png",
+          "sizes": "96x96"
+        },
+        {
+          "src": "/img/icons/144x144.png",
+          "type": "image/png",
+          "sizes": "144x144"
+        },
+        {
+          "src": "/img/icons/192x192.png",
+          "type": "image/png",
+          "sizes": "192x192",
+          "purpose": "any maskable"
+        },
+        {
+          "src": "/img/icons/256x256.png",
+          "type": "image/png",
+          "sizes": "256x256"
+        },
+        {
+          "src": "/img/icons/512x512.png",
+          "type": "image/png",
+          "sizes": "512x512"
+        }
+      ]
+}

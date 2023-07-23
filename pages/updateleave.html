@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f6c226">
+    <link rel="icon" href="/img/icons/72x72.png" type="image/icon type">
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <title>Student details</title>
+    <style>
+        /* The following tag selector body use the font-family and background-color properties for body of a page*/
+
+        body {
+            font-family: Calibri, Helvetica, sans-serif;
+            background-color: #f1c639;
+        }
+
+        /* Following container class used padding for generate space around it, and also use a background-color for specify the color lightblue as a background */
+        .container {
+            padding: 50px;
+            background-color: #b3b6ba;
+        }
+
+        /* The following tag selector input use the different properties for the text filed. */
+        input[type="text"],
+        input[type="password"] {
+            border-radius: 15px;
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            background: #f1f1f1;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            background-color: orange;
+            outline: none;
+        }
+
+        div {
+            padding: 10px 0;
+        }
+
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+
+        /* The following tag selector button uses the different properties for the Button. */
+        button {
+            background-color: #51b51f;
+            border-radius: 15px;
+            color: white;
+            margin: 8px 0;
+            cursor: pointer;
+            padding: 16px 20px;
+            width: 100%;
+            opacity: 0.9;
+        }
+
+        /* The following tag selector hover uses the opacity property for the Button which select button when you mouse over it. */
+        button:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <center>
+            <h1 style="font-size: 4vw">Update leave status of Employee</h1>
+        </center>
+        <hr />
+
+        <label> Name </label> <input id="name" type="text" /><br /><br />
+        <label> Action </label> <input id="action" type="text" /><br /><br />
+        <br />
+        <button id="Insbtn">Update</button>
+    </div>
+
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+
+        // Firebase configuration (Initialize Firebase)
+        const firebaseConfig = {
+            apiKey: "AIzaSyB0TpSxuwXXrIOh8YqxAs5nn1xYkkWYLEE",
+            authDomain: "leave-management-system-1a900.firebaseapp.com",
+            projectId: "leave-management-system-1a900",
+            storageBucket: "leave-management-system-1a900.appspot.com",
+            messagingSenderId: "1077456521352",
+            appId: "1:1077456521352:web:e5265bbea690dc567c373d",
+            measurementId: "G-3MPB58TFQ9"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        import {
+            getDatabase,
+            ref,
+            set,
+            child,
+            update,
+            remove,
+        } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+
+        const db = getDatabase();
+
+        var Name = document.getElementById("name");
+        var ac = document.getElementById("action");
+        var insBtn = document.getElementById("Insbtn");
+
+        // -----------------------------Update Data Function------------------------
+
+        // function InsertData() {
+        //   set(ref(db, "EmployeeDetails/" + Id.value), {
+        //     name: Name.value,
+        //     id: Id.value,
+        //     dep: Dep.value,
+        //     password: Password.value,
+        //     casualleaves: 7,
+        //     sickleaves: 5,
+        //     earnedleaves: 14,
+        //   })
+        //     .then(() => {
+        //       alert("data stored successfuly");
+        //     })
+        //     .catch((error) => {
+        //       alert("unsuccessful, error" + error);
+        //     });
+        // }
+
+        function updateDataInFirebase() {
+            // Get a reference to the node you want to update
+            const databaseRef = firebase.database().ref("LeavesPending");
+            update(ref(db, "TheStudents/" + rollbox.value)
+
+            // New data to update the node
+            const newData = {
+                // Update the specific fields you want to change
+                Name: Name,
+                Action: ac,
+                // Add more fields if needed
+            };
+
+            // Use the update() method to modify the data in the node
+            databaseRef.update(newData)
+                .then(() => {
+                    alert("Data updated successfully!");
+                })
+                .catch((error) => {
+                    alert("Error updating data:", error);
+                });
+        }
+
+
+        set(ref(db, "TheStudents/" + rollbox.value), {
+          Name: Name,
+        Action: ac,
+        })
+          .then(() => {
+            alert("data stored successfuly");
+          })
+          .catch((error) => {
+            alert("unsuccessful, error" + error);
+          });
+      }
+
+        insBtn.addEventListener("click", updateDataInFirebase);
+
+    </script>
+</body>
+
+</html>
